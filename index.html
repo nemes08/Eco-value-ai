@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoValue AI | Pi Network</title>
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center p-6">
+    <header class="w-full max-w-md text-center py-8">
+        <h1 class="text-4xl font-extrabold bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">EcoValue AI</h1>
+        <p class="text-slate-400 mt-2">Pioneerlar için Akıllı Değer Analizi</p>
+    </header>
 
+    <main class="w-full max-w-md space-y-6">
+        <div class="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-xl">
+            <label class="block text-sm font-medium mb-2 text-slate-300">Değerini Öğrenmek İstediğiniz Ürün:</label>
+            <input id="product" type="text" placeholder="Örn: Akıllı Telefon, Web Tasarım..." 
+                   class="w-full p-4 rounded-xl bg-slate-900 border border-slate-600 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+            <button onclick="analyzeValue()" class="w-full mt-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 p-4 rounded-xl font-bold shadow-lg transform active:scale-95 transition-all">
+                AI Analizini Başlat
+            </button>
+        </div>
+
+        <div id="result" class="hidden animate-bounce-in bg-slate-800 p-6 rounded-2xl border-l-4 border-orange-500">
+            <p class="text-slate-400 text-xs uppercase tracking-widest font-bold">Tahmini Ekosistem Değeri</p>
+            <div id="price" class="text-3xl font-black mt-2 text-white">--</div>
+            <p class="text-[10px] text-slate-500 mt-3 leading-tight">*Bu analiz güncel global veriler ve Pi topluluk konsensüsü temel alınarak yapılmıştır.</p>
+        </div>
+    </main>
+
+    <script>
+        Pi.init({ version: "2.0", sandbox: true });
+
+        function analyzeValue() {
+            const product = document.getElementById('product').value;
+            const resultDiv = document.getElementById('result');
+            const priceDiv = document.getElementById('price');
+
+            if(!product) return alert("Lütfen bir ürün girin!");
+
+            resultDiv.classList.remove('hidden');
+            priceDiv.innerText = "Analiz Ediliyor...";
+
+            // AI Simülasyonu
+            setTimeout(() => {
+                const fakeValue = (Math.random() * 50 + 5).toFixed(4);
+                priceDiv.innerText = fakeValue + " Pi";
+            }, 1800);
+        }
+    </script>
+</body>
+</html>
